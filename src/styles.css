@@ -1,0 +1,11 @@
+#root{
+  width: 100%;
+}
+h1{
+  text-align: center;
+}
+.card{
+  max-width: 400px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
