@@ -10,8 +10,9 @@ const RecipeList = ({ recipes }) => {
                 <img className="card-img-top" src={recipe.imgDish} alt="noname"/>
                 <h3>{recipe.title}</h3>
                 <div className="card-body">
-                    <p><b>Ингредиенты:</b> {recipe.ingredients.join(', ')}</p>
                     <p><b>Категория:</b> {recipe.category}</p>
+                    <p><b>Время приготовления:</b> {recipe.time} мин.</p>
+                    <p><b>Ингредиенты:</b> {recipe.ingredients.join(', ')}</p>
                 </div>
             </div>
         ))}

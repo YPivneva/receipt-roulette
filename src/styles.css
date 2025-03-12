@@ -9,3 +9,10 @@ h1{
   margin-bottom: 20px;
   margin-right: 20px;
 }
+
+.img-detail{
+  width: 300px;
+}
+.card-img-top{
+  max-height: 375px;
+}
