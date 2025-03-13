@@ -3,6 +3,8 @@ import RecipeList from './components/RecipeList';
 // import RecipeForm from './components/RecipeForm';
 import recipesData from './data/recipes';
 import './styles.css';
+import Footer from './components/Foteer';
+import Header from './components/Header';
 
 const App = () => {
   const [recipes] = useState(recipesData);
@@ -13,9 +15,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Кулинарная книга</h1>
+      <Header />
       {/* <RecipeForm addRecipe={addRecipe} /> */}
       <RecipeList recipes={recipes} />
+      <Footer />
     </div>
   );
 };
