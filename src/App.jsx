@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import RecipeDetail from './components/RecipeDetail';
+import About from './components/About';
 // import RecipeForm from './components/RecipeForm';
 import recipesData from './data/recipes';
 import './styles.css';
@@ -25,16 +26,16 @@ const App = () => {
     //   <FetchData recipes={recipes} />
     //   <Footer />
     // </div>
-    <div>
-       <Header />
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<RecipeList recipes={recipes} />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/category/:categoryName" element={<Category />} /> */}
         <Route path="/recipes/:id" element={<RecipeDetail recipes={recipes} />} />
       </Routes>
+      <Footer />
     </Router>
-    <Footer />
-     </div>
   );
 };
 

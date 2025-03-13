@@ -16,3 +16,9 @@ h1{
 .card-img-top{
   max-height: 375px;
 }
+.card.col> a{
+  color: #00044a;
+}
+.card.col> a:hover{
+  color: #050d96;
+}
