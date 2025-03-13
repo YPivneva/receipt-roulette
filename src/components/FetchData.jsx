@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import Header from './Header';
 
 function FetchData({ recipes }){
-    const [filteredItems, setFilteredItems] = useState(recipes);
+    <FetchData recipes={recipes } />
+    const [filteredItems, setFilteredItems] = useState(recipes || []);
     const [category, setСategories] = useState();
     // const [time, setTime] = useState();
     const [maxTime, setMaxTime] = useState('');
+    
 
     const filterByCategory = (category) =>{
         setFilteredItems(
@@ -26,22 +29,23 @@ function FetchData({ recipes }){
                 );
              })
         )
-    }, [category, maxTime, recipes])
+    }, [category, maxTime, recipes]);
     const categorys = Array.from(
         new Set(recipes.map((recipe)=> recipe.category))
     )
 
     return (
         <div className="container">
+            <Header categories={categorys} filterByCategory={filterByCategory} />
             <h2>Список рецептов</h2>
-            <select onChange={e=>filterByCategory(e.target.value)} name="" id="">
+            {/* <select onChange={e=>filterByCategory(e.target.value)} name="" id="">
                 <option value="" disabled selected>
                     Тип категории
                 </option>
                 {categorys.map(category => {
                     return <option key={category}>{category}</option>
                 })}
-            </select>
+            </select> */}
             <div>
                 <label htmlFor="max-time">Максимальное время приготовления (мин): </label>
                 <input

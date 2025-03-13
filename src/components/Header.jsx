@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({ categories, filterByCategory }) {
     return (
         <header>
             <h1>Кулинарная книга</h1>
@@ -18,7 +18,7 @@ export default function Header() {
                                 <Link className="nav-link" to="/about">О сайте</Link>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {/* <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Категория
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -26,7 +26,17 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="/category/second">вторые блюда</Link></li>
                                     <li><Link className="dropdown-item" to="/category/snacks">закуски</Link></li>
                                     <li><Link className="dropdown-item" to="/category/desserts">десерты</Link></li>
-                                </ul>
+                                </ul> */}
+                                <select onChange={e => filterByCategory(e.target.value)} defaultValue="">
+                                    <option value="" disabled>
+                                        Категория
+                                    </option>
+                                    {Array.isArray(categories) && categories.map(category => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
+                                </select>
                             </li>
                         </ul>
                     </div>
