@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RecipeList = ({ recipes }) => {
   return (
@@ -7,6 +8,7 @@ const RecipeList = ({ recipes }) => {
       <div className="row row-cols-3">
         {recipes.map((recipe) => (
             <div className="card col" key={recipe.id}>
+              <Link to={`/recipes/${recipe.id}`}>
                 <img className="card-img-top" src={recipe.imgDish} alt="noname"/>
                 <h3>{recipe.title}</h3>
                 <div className="card-body">
@@ -14,6 +16,7 @@ const RecipeList = ({ recipes }) => {
                     <p><b>Время приготовления:</b> {recipe.time} мин.</p>
                     <p><b>Ингредиенты:</b> {recipe.ingredients.join(', ')}</p>
                 </div>
+              </Link>
             </div>
         ))}
       </div>
