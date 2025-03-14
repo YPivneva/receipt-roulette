@@ -2,18 +2,15 @@ import React, {useState, useEffect} from 'react';
 
 function FetchData({ recipes }){
     const [filteredItems, setFilteredItems] = useState(recipes || []);
-    const [category, setСategories] = useState("");
-    const [maxTime, setMaxTime] = useState(); 
+    const [category, setCategory] = useState("");
+    const [maxTime, setMaxTime] = useState(""); 
     
     const handleMaxTimeChange = (e) => {
         setMaxTime(e.target.value);
     };
     const filterByCategory = (category) => {
-        setFilteredItems(
-            recipes.filter((recipe) => {
-                return recipe.category === category
-            })
-    )};
+        setCategory(category);
+    };
 
     useEffect(()=>{
         setFilteredItems(
@@ -30,8 +27,8 @@ function FetchData({ recipes }){
         new Set(recipes.map((recipe)=> recipe.category))
     )
     const clearAllFilters = () => {
-        setСategories();
-        setMaxTime();
+        setCategory("");
+        setMaxTime("");
     }
 
     return (
@@ -41,6 +38,7 @@ function FetchData({ recipes }){
                 <select 
                   onChange={e=>filterByCategory(e.target.value)} 
                   className="form-select" 
+                  value={category}
                 >
                     <option value="" disabled selected>
                         Тип категории
