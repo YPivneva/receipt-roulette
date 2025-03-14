@@ -1,24 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import Header from './Header';
 
 function FetchData({ recipes }){
-    <FetchData recipes={recipes } />
     const [filteredItems, setFilteredItems] = useState(recipes || []);
-    const [category, setСategories] = useState();
-    // const [time, setTime] = useState();
-    const [maxTime, setMaxTime] = useState('');
+    const [category, setСategories] = useState("");
+    const [maxTime, setMaxTime] = useState(); 
     
-
-    const filterByCategory = (category) =>{
-        setFilteredItems(
-            recipes.filter((recipe)=>{
-                return recipe.category === category;
-            })
-        )
-    }
     const handleMaxTimeChange = (e) => {
         setMaxTime(e.target.value);
     };
+    const filterByCategory = (category) => {
+        setFilteredItems(
+            recipes.filter((recipe) => {
+                return recipe.category === category
+            })
+    )};
 
     useEffect(()=>{
         setFilteredItems(
@@ -30,45 +25,60 @@ function FetchData({ recipes }){
              })
         )
     }, [category, maxTime, recipes]);
-    const categorys = Array.from(
+    
+    const categories = Array.from(
         new Set(recipes.map((recipe)=> recipe.category))
     )
+    const clearAllFilters = () => {
+        setСategories();
+        setMaxTime();
+    }
 
     return (
-        <div className="container">
-            <Header categories={categorys} filterByCategory={filterByCategory} />
+        <div className="container">            
             <h2>Список рецептов</h2>
-            {/* <select onChange={e=>filterByCategory(e.target.value)} name="" id="">
-                <option value="" disabled selected>
-                    Тип категории
-                </option>
-                {categorys.map(category => {
-                    return <option key={category}>{category}</option>
-                })}
-            </select> */}
-            <div>
-                <label htmlFor="max-time">Максимальное время приготовления (мин): </label>
-                <input
-                    type="number"
-                    id="max-time"
-                    value={maxTime}
-                    onChange={handleMaxTimeChange}
-                    placeholder="Введите время"
-                />
+            <div className='panel-filter'>
+                <select 
+                  onChange={e=>filterByCategory(e.target.value)} 
+                  className="form-select" 
+                >
+                    <option value="" disabled selected>
+                        Тип категории
+                    </option>
+                    {categories.map(category => {
+                        return <option key={category}>{category}</option>
+                    })}
+                </select>
+                <div className='form-time'>
+                    <label className="col-form-label" htmlFor="max-time">Максимальное время приготовления (мин): </label>
+                    <input
+                        type="number"
+                        id="max-time"
+                        className="form-control"
+                        value={maxTime}
+                        onChange={handleMaxTimeChange}
+                        placeholder="Введите время"
+                    />
+                </div>
+                <button className='btn btn-outline-secondary' onClick={clearAllFilters}>Очистить фильтр</button>
             </div>
             <div className="row row-cols-3">
-                {filteredItems.map((recipe) => (
-                    
-                <div className="card col" key={recipe.id}>
-                    <img className="card-img-top" src={recipe.imgDish} alt="noname"/>
-                    <h3>{recipe.title}</h3>
-                    <div className="card-body">
-                        <p><b>Категория:</b> {recipe.category}</p>
-                        <p><b>Время приготовления:</b> {recipe.time} мин.</p>
-                        <p><b>Ингредиенты:</b> {recipe.ingredients.join(', ')}</p>
+                {filteredItems.map((recipe) => ( 
+                    <div className="card col" key={recipe.id}>
+                        <img className="card-img-top" src={recipe.imgDish} alt="noname"/>
+                        <h3>{recipe.title}</h3>
+                        <div className="card-body">
+                            <p><b>Категория:</b> {recipe.category}</p>
+                            <p><b>Время приготовления:</b> {recipe.time} мин.</p>
+                            <p><b>Ингредиенты:</b> {recipe.ingredients.join(', ')}</p>
+                        </div>
                     </div>
-                </div>
                 ))}
+                {filteredItems.length === 0 && (
+                    <div>
+                        <p>По заданным критериям нет рецептов</p>
+                    </div>
+                )}
 		    </div>
         </div>
     );

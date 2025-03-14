@@ -22,3 +22,38 @@ h1{
 .card.col> a:hover{
   color: #050d96;
 }
+
+.panel-filter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  gap: 10px;
+  border: 1px solid #535353;
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+.form-select{
+  width: 200px;
+}
+input[type="number"].form-control::-webkit-inner-spin-button, 
+input[type="number"].form-control::-webkit-outer-spin-button,
+.form-control { 
+  -webkit-appearance: none; 
+  margin: 0; 
+  appearance: textfield;
+}
+.form-control{
+  width: 135px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+@media (max-width: 500px) {
+  .panel-filter{
+    flex-direction: column;
+  }
+  .form-time{
+    text-align: center;
+  }
+}
