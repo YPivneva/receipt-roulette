@@ -1,11 +1,17 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import RecipeCard from './RecipeCard';
 import FilterPanel from './FilterPanel';
+import RecipeForm from './RecipeForm';
 
 function FetchData({ recipes }){
     const [filteredItems, setFilteredItems] = useState(recipes || []);
     const [category, setCategory] = useState("");
     const [maxTime, setMaxTime] = useState(""); 
+    const [anotherRecipe, setRecipes] = useState(recipes || []);
+
+    const addRecipe = (newRecipe) => {
+        setRecipes(([anotherRecipe]) => [...[anotherRecipe, newRecipe]]);
+    };
 
     useEffect(()=>{
         const filtered = recipes.filter((recipe)=>{
@@ -27,6 +33,7 @@ function FetchData({ recipes }){
 
     return (
         <div className="container">
+            <RecipeForm addRecipe={addRecipe} />
             <h2>Список рецептов</h2>
             <FilterPanel 
                 categories={categories} 

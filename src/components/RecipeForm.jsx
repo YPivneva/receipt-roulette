@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const RecipeForm = ({ recipe }) => {
+const RecipeForm = ({ addRecipe }) => {
   const [state, setState] = useState({
     title: "",
     ingredients: "",
@@ -24,7 +24,7 @@ const RecipeForm = ({ recipe }) => {
     };
     
     console.log(newRecipe);
-    // addRecipe(newRecipe); // Вызываем функцию для добавления рецепта
+    addRecipe(newRecipe); // Вызываем функцию для добавления рецепта
 
     setState({ 
       title: "",
