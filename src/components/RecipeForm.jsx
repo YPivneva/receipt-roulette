@@ -10,6 +10,17 @@ const RecipeForm = ({ addRecipe }) => {
     imgDish: "",
   })
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setState(prevState => ({ ...prevState, imgDish: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     
@@ -104,12 +115,11 @@ const RecipeForm = ({ addRecipe }) => {
       <div className="mb-3">
         <label for="imgDish" className="form-label">Ссылка на изображение</label>
         <input
-          type="text"
+          type="file"
           className="input-recipe"
           name='imgDish'
-          placeholder=""
-          value={state.imgDish}
-          onChange={(e) => setState({ ...state, imgDish: e.target.value })}
+          accept="assets/*"
+          onChange={handleImageChange}
           required
         />
       </div>
