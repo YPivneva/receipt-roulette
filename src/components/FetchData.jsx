@@ -7,6 +7,8 @@ function FetchData({ recipes }){
     const [filteredItems, setFilteredItems] = useState(recipes || []);
     const [category, setCategory] = useState("");
     const [maxTime, setMaxTime] = useState("");
+    const [anotherRecipe, setRecipes] = useState(recipes || []);
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
     const addRecipe = (newRecipe) => {
         setFilteredItems(([prevRecipes]) => [...[prevRecipes, newRecipe]]);
@@ -31,9 +33,16 @@ function FetchData({ recipes }){
     }, []);
 
     return (
-        <div className="container">
-            <RecipeForm addRecipe={addRecipe} />
+        <div className="container">           
             <h2>Список рецептов</h2>
+            <button 
+                className="btn btn-outline-secondary" 
+                onClick={() => setIsFormVisible(prev => !prev)}
+            >
+                {isFormVisible ? 'Скрыть форму добавления рецепта' : 'Показать форму добавления рецепта'}
+            </button>
+            
+            {isFormVisible && <RecipeForm addRecipe={addRecipe} />} 
             <FilterPanel 
                 categories={categories} 
                 category={category} 
