@@ -6,11 +6,10 @@ import RecipeForm from './RecipeForm';
 function FetchData({ recipes }){
     const [filteredItems, setFilteredItems] = useState(recipes || []);
     const [category, setCategory] = useState("");
-    const [maxTime, setMaxTime] = useState(""); 
-    const [anotherRecipe, setRecipes] = useState(recipes || []);
+    const [maxTime, setMaxTime] = useState("");
 
     const addRecipe = (newRecipe) => {
-        setRecipes(([anotherRecipe]) => [...[anotherRecipe, newRecipe]]);
+        setFilteredItems(([prevRecipes]) => [...[prevRecipes, newRecipe]]);
     };
 
     useEffect(()=>{

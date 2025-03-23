@@ -50,7 +50,7 @@ const RecipeForm = ({ addRecipe }) => {
   return (
     <form className="add-recipe" onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label for="title" className="form-label">Название рецепта</label>
+        <label  htmlFor="title" className="form-label">Название рецепта</label>
         <input
           type="text"
           className="input-recipe"
